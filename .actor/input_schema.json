@@ -1,0 +1,93 @@
+{
+  "title": "Leads Scraper Input",
+  "description": "Configure Apollo.io filters and optional Hunter.io email enrichment for the scraper run.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "personTitle": {
+      "title": "Person Titles",
+      "type": "array",
+      "description": "Filter leads by job title keywords, e.g. [\"CEO\", \"Founder\", \"CTO\"].",
+      "items": { "type": "string" },
+      "editor": "stringList",
+      "default": []
+    },
+    "seniority": {
+      "title": "Seniority Levels",
+      "type": "array",
+      "description": "Filter by seniority level, e.g. [\"CEO\", \"Founder\", \"VP\", \"Director\"].",
+      "items": { "type": "string" },
+      "editor": "stringList",
+      "default": []
+    },
+    "personCountry": {
+      "title": "Person Country",
+      "type": "array",
+      "description": "ISO country names to filter by, e.g. [\"India\", \"United States\"].",
+      "items": { "type": "string" },
+      "editor": "stringList",
+      "default": []
+    },
+    "companyEmployeeSize": {
+      "title": "Company Employee Size",
+      "type": "array",
+      "description": "Employee count ranges, e.g. [\"2 - 10\", \"11 - 50\", \"51 - 200\"].",
+      "items": { "type": "string" },
+      "editor": "stringList",
+      "default": []
+    },
+    "industry": {
+      "title": "Industry",
+      "type": "array",
+      "description": "Target industries, e.g. [\"SaaS\", \"Technology\", \"FinTech\"].",
+      "items": { "type": "string" },
+      "editor": "stringList",
+      "default": []
+    },
+    "totalResults": {
+      "title": "Total Results to Scrape",
+      "type": "integer",
+      "description": "Maximum number of leads to scrape. Set to 0 for unlimited (up to Apollo's cap).",
+      "minimum": 1,
+      "maximum": 50000,
+      "default": 500
+    },
+    "includeEmails": {
+      "title": "Include Email Enrichment",
+      "type": "boolean",
+      "description": "If true, will attempt to fetch verified emails from Hunter.io for each lead.",
+      "default": false
+    },
+    "apolloSessionCookie": {
+      "title": "Apollo.io Session Cookie",
+      "type": "string",
+      "description": "Your Apollo.io session cookie value (from browser DevTools → Application → Cookies). Required.",
+      "editor": "textarea",
+      "isSecret": true
+    },
+    "hunterApiKey": {
+      "title": "Hunter.io API Key",
+      "type": "string",
+      "description": "Hunter.io API key for email enrichment. Required only when includeEmails is true.",
+      "editor": "textfield",
+      "isSecret": true
+    },
+    "pageSize": {
+      "title": "Results Per Page",
+      "type": "integer",
+      "description": "Number of results to request per Apollo API page (max 25 to stay within limits).",
+      "minimum": 5,
+      "maximum": 25,
+      "default": 25
+    },
+    "requestDelayMs": {
+      "title": "Request Delay (ms)",
+      "type": "integer",
+      "description": "Base delay in milliseconds between Apollo API page requests to avoid rate limiting.",
+      "minimum": 500,
+      "maximum": 10000,
+      "default": 1500
+    }
+  },
+  "required": ["apolloSessionCookie", "totalResults"]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "leads-scraper",
+  "version": "1.0.0",
+  "description": "Production-ready Apify actor to scrape leads from Apollo.io and enrich them via Hunter.io",
+  "main": "src/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/main.js",
+    "dev": "node src/main.js",
+    "test:mock": "node dev-mock-test.js"
+  },
+  "dependencies": {
+    "apify": "^3.3.3",
+    "axios": "^1.6.8",
+    "md5": "^2.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

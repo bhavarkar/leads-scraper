@@ -1,0 +1,51 @@
+{
+  "actorSpecification": 1,
+  "name": "leads-scraper",
+  "title": "Leads Scraper – Apollo.io + Hunter.io",
+  "description": "Scrapes B2B leads from Apollo.io's internal search API with optional Hunter.io email enrichment. Supports pagination, progress resumption, and structured output.",
+  "version": "1.0.0",
+  "buildTag": "latest",
+  "environmentVariables": [],
+  "dockerfile": "./Dockerfile",
+  "input": "./input_schema.json",
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "title": "Scraped Leads",
+      "description": "One record per lead with contact and company details",
+      "views": {
+        "overview": {
+          "title": "Leads Overview",
+          "transformation": {
+            "fields": [
+              "firstName",
+              "lastName",
+              "title",
+              "company",
+              "companyDomain",
+              "email",
+              "emailStatus",
+              "phone",
+              "country",
+              "state",
+              "linkedinUrl",
+              "companyLinkedinUrl"
+            ]
+          },
+          "display": {
+            "component": "table",
+            "properties": {
+              "firstName": { "label": "First Name", "format": "text" },
+              "lastName":  { "label": "Last Name",  "format": "text" },
+              "title":     { "label": "Title",       "format": "text" },
+              "company":   { "label": "Company",     "format": "text" },
+              "email":     { "label": "Email",       "format": "text" },
+              "phone":     { "label": "Phone",       "format": "text" },
+              "country":   { "label": "Country",     "format": "text" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

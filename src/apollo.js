@@ -142,7 +142,7 @@ export async function getLeads(filters, page, cookie, pageSize = 25) {
 function buildHeaders(cookie) {
   // Extract the CSRF token that Apollo embeds inside the cookie string
   // The token appears as `_csrf_token=<value>` or `X-CSRF-Token` form value
-  const csrfMatch = cookie.match(/(?:_csrf_token|csrf_token)=([^;]+)/i);
+  const csrfMatch = cookie.match(/(?:_csrf_token|csrf_token|X-CSRF-TOKEN)=([^;]+)/i);
   const csrfToken = csrfMatch ? decodeURIComponent(csrfMatch[1]) : '';
 
   return {
